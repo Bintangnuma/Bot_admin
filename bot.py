@@ -35,4 +35,15 @@ async def ban_error(ctx, error):
     elif isinstance(error, commands.MemberNotFound):
         await ctx.send("User not found.")
 
+@bot.command()
+async def check(ctx):
+    if ctx.message.attachments:
+        for attachment in ctx.message.attachments:
+            file_name = attachment.filename
+            file_url = attachment.url
+            await attachment.save(f"./{attachment.filename}")
+            await ctx.send(f"Saved picture to ./{attachment.filename}") 
+    else:
+        await ctx.send("You forgot to upload the picture")
+        
 bot.run(token)
