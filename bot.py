@@ -45,5 +45,11 @@ async def check(ctx):
             await ctx.send(f"Saved picture to ./{attachment.filename}") 
     else:
         await ctx.send("You forgot to upload the picture")
+
+@bot.event
+async def on_member_join(member):
+    # Mengirim pesan ucapan selamat
+    for channel in member.guild.text_channels:
+        await channel.send(f'Selamat datang, {member.mention}!')
         
 bot.run(token)
